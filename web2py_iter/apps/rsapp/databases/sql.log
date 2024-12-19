@@ -1,0 +1,34 @@
+timestamp: 2024-12-13T08:30:36.077007
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "username" CHAR(512) UNIQUE,
+    "email" CHAR(512) UNIQUE,
+    "password" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "sso_id" CHAR(512),
+    "action_token" CHAR(512),
+    "last_password_change" TIMESTAMP,
+    "past_passwords_hash" TEXT
+);
+success!
+timestamp: 2024-12-13T08:30:36.093509
+CREATE TABLE "auth_user_tag_groups"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tagpath" CHAR(512),
+    "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
+timestamp: 2024-12-15T19:54:07.392627
+CREATE TABLE "Tabliq"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tajneed" INTEGER,
+    "number_of_men" INTEGER,
+    "number_of_women" INTEGER,
+    "number_of_ansar" INTEGER,
+    "number_of_khuddam" INTEGER,
+    "number_of_atfal" INTEGER,
+    "number_of_lajna" INTEGER,
+    "date_of_submission" DATE
+);
+success!

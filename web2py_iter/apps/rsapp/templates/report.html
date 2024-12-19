@@ -1,0 +1,129 @@
+[[extend 'layout.html']]
+
+[[block nav]]
+<nav class="navbar nav bg-light">
+	<div class="navbar-brand">
+		[[=user["last_name"]+" "+user["first_name"]]]
+	</div>
+	<span>
+		<ul class="navbar-item">
+			Tajneed: [[=tajneed_data]]
+		</ul>
+	</span>
+</nav>
+[[end]]
+
+<div class="container flex-wrap flex-x navbar nav align-left col-sm-3">
+	<ul class="navbar-item active" id="tabliq">
+		Tabliq
+	</ul>
+	<ul class="navbar-item" id="waq_fir_nau">
+		Waq-Fir-Nau
+	</ul>
+	<ul class="navbar-item" id="salaat">
+		Salaat
+	</ul>
+	<ul class="navbar-item" id="chanda">
+		Chanda
+		<li id="one_sixteenth">
+			1/16
+		</li>
+		<li id="one_tenth">
+			1/10
+		</li>
+		<li id="one_fifth">
+			1/5
+		</li>
+		<li id="one_third">
+			1/3
+		</li>
+		<li id="tarid_jadid">
+			Tariq Jadid
+		</li>
+		<li id="waqfir_jadid">
+			Waq-Fir Jadid
+		</li>
+	</ul>
+	<ul class="navbar-item" id="visitations">
+		Visitations
+	</ul>
+	<ul class="navbar-item" id="tahweed">
+		Tahweed
+	</ul>
+	<ul class="navbar-item" id="marriage">
+		Rana ... (*Marriage)
+	</ul>
+	<ul class="navbar-item" id="personal_reports">
+		Miscelleneous Personal Reports
+	</ul>
+</div>
+<div class="col-md-6 align-right flex flex-wrap container bg-secondary">
+	[[while True:]]
+	[[if response.id.tabliq.is_active:]]
+	<form>
+		[[form=]][[=Form(db.tabliq)]]
+		[[if form.errors:]]
+		[[flash.set="Form Submission Unsuccessful! Form Has Errors."]]
+		[[else:]]
+		[[if form.accepted:]]
+		[[flash.set="Form Submitted Successfully!"]]
+		[[else:]]
+		[[flash.set="Something Unexpected went wrong!"]]
+		[[pass]]
+		[[pass]]
+	</form>
+	[[elif response.id.waq_fir_nau.is_active:]]
+	<form>
+		[[form=]][[=Form(db.waq_fir_nau)]]
+		[[if form.errors:]]
+		[[flash.set="Form Submission Unsuccessful! Form Has Errors."]]
+		[[else:]]
+		[[if form.accepted:]]
+		[[flash.set="Form Submitted Successfully!"]]
+		[[else:]]
+		[[flash.set="Something Unexpected went wrong!"]]
+		[[pass]]
+		[[pass]]
+	</form>
+	[[elif response.id.salaat.is_active:]]
+	<form>
+		[[form=]][[=Form(db.salaat)]]
+		[[if form.errors:]]
+		[[flash.set="Form Submission Unsuccessful! Form Has Errors."]]
+		[[else:]]
+		[[if form.accepted:]]
+		[[flash.set="Form Submitted Successfully!"]]
+		[[else:]]
+		[[flash.set="Something Unexpected went wrong!"]]
+		[[pass]]
+		[[pass]]
+	</form>
+	[[elif response.id.visitations.is_active:]]
+	<form>
+		[[form=]][[=Form(db.visitations)]]
+		[[if form.errors:]]
+		[[flash.set="Form Submission Unsuccessful! Form Has Errors."]]
+		[[else:]]
+		[[if form.accepted:]]
+		[[flash.set="Form Submitted Successfully!"]]
+		[[else:]]
+		[[flash.set="Something Unexpected went wrong!"]]
+		[[pass]]
+		[[pass]]
+	</form>
+	[[elif response.id.personal_reports.is_active:]]
+	<form>
+		[[form=]][[=Form(db.personal_reports)]]
+		[[if form.errors:]]
+		[[flash.set="Form Submission Unsuccessful! Form Has Errors."]]
+		[[else:]]
+		[[if form.accepted:]]
+		[[flash.set="Form Submitted Successfully!"]]
+		[[else:]]
+		[[flash.set="Something Unexpected went wrong!"]]
+		[[pass]]
+		[[pass]]
+	</form>
+	[[pass]]
+	[[end]]
+</div>
